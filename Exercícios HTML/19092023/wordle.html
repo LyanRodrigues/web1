@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle</title>
+    <style>
+        main {
+            text-align: center;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 50px;
+        }
+
+        table {
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 350px;
+        }
+
+        .wordle-input {
+            border: 2px solid #333;
+            padding: 10px;
+            font-size: 20px;
+            text-transform: uppercase;
+            border-radius: 30px;
+        }
+
+        .wordle-input:focus {
+            border-color: #ffffff;
+            outline: none;
+            background-color: rgb(226, 227, 228);
+        }
+
+        .wordle-output {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 35px;
+            padding: 15px;
+            border-radius: 30px;
+        }
+
+        td {
+            margin: 10px;
+            padding: 30px;
+            text-align: center;
+            font-size: 50px;
+            border: 5px solid #8d8c88;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Wordle</h1>
+        <form>
+            <input type="text" id="wordInput" class="wordle-input" maxlength="5"><br>
+            <button type="button" id="guessButton">Guess</button>
+        </form>
+        <section>
+            <table>
+                <tr>
+                    <td id="td0">-</td>
+                    <td id="td1">-</td>
+                    <td id="td2">-</td>
+                    <td id="td3">-</td>
+                    <td id="td4">-</td>
+                </tr>
+            </table>
+        </section>
+        <div id="outputArea" class="wordle-output"></div>
+        <button type="button" id="restartButton">Restart</button>
+        <script>
+            function reiniciarJogo() {
+                location.reload();
+            }
+
+            var palavraSecreta = "APPLE";
+            var palavraAtual = ["", "", "", "", ""];
+
+            function verificarAdivinhacao() {
+                var input = document.getElementById('wordInput').value.toUpperCase();
+                var outputArea = document.getElementById('outputArea');
+
+                if (input.length !== 5) {
+                    alert('A palavra deve ter exatamente 5 letras!');
+                    return;
+                }
+
+                for (var i = 0; i < 5; i++) {
+                    document.getElementById('td' + i).textContent = input[i];
+                }
+                
+                for (var i = 0; i < 5; i++) {
+                    if (input[i] === palavraSecreta[i]) {
+                        document.getElementById('td' + i).style.backgroundColor = 'green';
+                    } else if (palavraSecreta.includes(input[i])) {
+                        document.getElementById('td' + i).style.backgroundColor = 'yellow';
+                    } else {
+                        document.getElementById('td' + i).style.backgroundColor = 'transparent';
+                    }
+                }
+
+                palavraAtual = input.split('');
+
+                if (JSON.stringify(palavraAtual) === JSON.stringify(palavraSecreta.split(''))) {
+                    alert('Parabéns! Você acertou a palavra!');
+                }
+
+                document.getElementById('wordInput').value = '';
+            }
+
+            var guessButton = document.getElementById('guessButton');
+            guessButton.addEventListener('click', verificarAdivinhacao);
+
+            var wordInput = document.getElementById('wordInput');
+            wordInput.addEventListener('keydown', function (event) {
+                if (event.key === "Enter") {
+                    verificarAdivinhacao();
+                }
+            });
+
+            var restartButton = document.getElementById('restartButton');
+            restartButton.addEventListener('click', reiniciarJogo);
+        </script>
+    </main>
+</body>
+</html>
