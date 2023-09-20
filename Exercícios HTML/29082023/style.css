@@ -1,0 +1,19 @@
+header{
+    width: 100%;
+    font-size: larger;
+    background-color: lightblue;
+}
+.menu > li {
+    display: inline-block;
+}
+.button{
+    background-color: green;
+    color: white;
+    margin: 15px;
+
+}
+td {
+
+    border: 1px solid black;
+    padding: 5px;
+}
