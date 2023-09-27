@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    main {
+        text-align: center;
+        position: relative;
+    }
+
+    div {
+        text-align: left;
+        font-size: large;
+        font-family: Arial, Helvetica, sans-serif;
+        width: 300px; /* Adjust the width as needed */
+        position: relative;
+        z-index: 1;
+        background-color: #f0f0f0; /* Background color for the entire div */
+        padding: 20px; /* Add some padding for spacing */
+        border: 2px solid #ccc; /* Add a border if desired */
+        border-radius: 5px; /* Add rounded corners to the div */
+    }
+
+    input {
+        margin-bottom: 30px;
+    }
+
+    /* Add the styles for the centered rectangle */
+    .rectangle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: transparent; /* Set the rectangle background to transparent */
+        width: 100%; /* Occupy the entire div width */
+        height: 100%; /* Occupy the entire div height */
+        z-index: -1; /* Place the rectangle behind the content */
+    }
+</style>
+
+<body>
+    <main>
+        <div>
+            <!-- Add the centered rectangle inside the div -->
+           
+            <label for="">Login</label><br>
+            <input type="text" placeholder="insira seu usuario"><br>
+            <label for="">Senha</label><br>
+            <input type="password" placeholder="insira sua senha">
+        </div>
+    </main>
+</body>
+
+</html>
